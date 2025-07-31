@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: container-mysql-exam
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: exam_db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: passer
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - exam-jee-net
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: container-phpmyadmin-exam
+    ports:
+      - "81:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: admin
+      PMA_PASSWORD: passer
+    depends_on:
+      - mysql
+    restart: unless-stopped
+    networks:
+      - exam-jee-net
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  exam_jee_net:
+    driver: bridge
