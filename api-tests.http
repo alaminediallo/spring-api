@@ -1,0 +1,176 @@
+###
+### API Tests pour l'application Spring Boot - Gestion Secteurs et Classes
+### Utilisation : IntelliJ IDEA (crée le env d'abord), VS Code avec 'REST Client' extension
+###
+
+### Variables
+@baseUrl = http://localhost:8080
+@contentType = application/json
+
+###############################################################################
+### SECTEURS - CRUD Operations
+###############################################################################
+
+### 1. Créer un secteur - Informatique
+POST {{baseUrl}}/api/sectors
+Content-Type: {{contentType}}
+
+{
+    "name": "Informatique"
+}
+
+### 2. Créer un secteur - Commerce
+POST {{baseUrl}}/api/sectors
+Content-Type: {{contentType}}
+
+{
+    "name": "Commerce"
+}
+
+### 3. Créer un secteur - Santé
+POST {{baseUrl}}/api/sectors
+Content-Type: {{contentType}}
+
+{
+    "name": "Santé"
+}
+
+### 4. Récupérer tous les secteurs
+GET {{baseUrl}}/api/sectors
+
+### 5. Récupérer un secteur par ID
+GET {{baseUrl}}/api/sectors/1
+
+### 6. Récupérer un secteur avec ses classes
+GET {{baseUrl}}/api/sectors/2/with-classes
+
+### 7. Mettre à jour un secteur
+PUT {{baseUrl}}/api/sectors/1
+Content-Type: {{contentType}}
+
+{
+    "name": "Technologies de l'Information"
+}
+
+### 8. Supprimer un secteur (sans classes)
+DELETE {{baseUrl}}/api/sectors/3
+
+###############################################################################
+### CLASSES - CRUD Operations
+###############################################################################
+
+### 9. Créer une classe - Développement Web
+POST {{baseUrl}}/api/classes
+Content-Type: {{contentType}}
+
+{
+    "className": "Développement Web",
+    "description": "Formation sur les technologies web modernes",
+    "sectorId": 1
+}
+
+### 10. Créer une classe - Data Science
+POST {{baseUrl}}/api/classes
+Content-Type: {{contentType}}
+
+{
+    "className": "Data Science",
+    "description": "Analyse de données et intelligence artificielle",
+    "sectorId": 1
+}
+
+### 11. Créer une classe - Marketing Digital
+POST {{baseUrl}}/api/classes
+Content-Type: {{contentType}}
+
+{
+    "className": "Marketing Digital",
+    "description": "Stratégies marketing en ligne",
+    "sectorId": 2
+}
+
+### 12. Récupérer toutes les classes
+GET {{baseUrl}}/api/classes
+
+### 13. Récupérer une classe par ID
+GET {{baseUrl}}/api/classes/1
+
+### 14. Mettre à jour une classe
+PUT {{baseUrl}}/api/classes/1
+Content-Type: {{contentType}}
+
+{
+    "className": "Développement Web Avancé",
+    "description": "Formation avancée sur les frameworks web modernes",
+    "sectorId": 1
+}
+
+### 15. Supprimer une classe
+DELETE {{baseUrl}}/api/classes/3
+
+###############################################################################
+### TESTS DE VALIDATION ET ERREURS
+###############################################################################
+
+### 16. Créer un secteur avec nom vide (Erreur de validation)
+POST {{baseUrl}}/api/sectors
+Content-Type: {{contentType}}
+
+{
+    "name": ""
+}
+
+### 17. Créer un secteur avec nom trop court (Erreur de validation)
+POST {{baseUrl}}/api/sectors
+Content-Type: {{contentType}}
+
+{
+    "name": "A"
+}
+
+### 18. Créer un secteur avec nom déjà existant (Erreur métier)
+POST {{baseUrl}}/api/sectors
+Content-Type: {{contentType}}
+
+{
+    "name": "Informatique"
+}
+
+### 19. Récupérer un secteur inexistant (404)
+GET {{baseUrl}}/api/sectors/999
+
+### 20. Créer une classe avec nom vide (Erreur de validation)
+POST {{baseUrl}}/api/classes
+Content-Type: {{contentType}}
+
+{
+    "className": "",
+    "description": "Description valide",
+    "sectorId": 1
+}
+
+### 21. Créer une classe avec secteur inexistant (Erreur métier)
+POST {{baseUrl}}/api/classes
+Content-Type: {{contentType}}
+
+{
+    "className": "Classe Test",
+    "description": "Description valide",
+    "sectorId": 999
+}
+
+### 22. Créer une classe avec nom déjà existant dans le même secteur
+POST {{baseUrl}}/api/classes
+Content-Type: {{contentType}}
+
+{
+    "className": "Développement Web",
+    "description": "Autre description",
+    "sectorId": 1
+}
+
+### 23. Supprimer un secteur qui contient des classes (Erreur métier)
+DELETE {{baseUrl}}/api/sectors/1
+
+### 24. Récupérer une classe inexistante (404)
+GET {{baseUrl}}/api/classes/999
