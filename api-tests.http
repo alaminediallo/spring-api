@@ -1,15 +1,12 @@
 ###
 ### API Tests pour l'application Spring Boot - Gestion Secteurs et Classes
-### Utilisation : IntelliJ IDEA (crée le env d'abord), VS Code avec 'REST Client' extension
+### Utilisation : IntelliJ IDEA (crée le env d'abord ou utiliser le fichier 'http-client.env.json'),
+### VS Code avec 'REST Client' extension
 ###
 
-### Variables
+### Variables (pour vscode seulement)
 @baseUrl = http://localhost:8080
 @contentType = application/json
-
-###############################################################################
-### SECTEURS - CRUD Operations
-###############################################################################
 
 ### 1. Créer un secteur - Informatique
 POST {{baseUrl}}/api/sectors
@@ -54,10 +51,6 @@ Content-Type: {{contentType}}
 
 ### 8. Supprimer un secteur (sans classes)
 DELETE {{baseUrl}}/api/sectors/3
-
-###############################################################################
-### CLASSES - CRUD Operations
-###############################################################################
 
 ### 9. Créer une classe - Développement Web
 POST {{baseUrl}}/api/classes
@@ -108,9 +101,6 @@ Content-Type: {{contentType}}
 ### 15. Supprimer une classe
 DELETE {{baseUrl}}/api/classes/3
 
-###############################################################################
-### TESTS DE VALIDATION ET ERREURS
-###############################################################################
 
 ### 16. Créer un secteur avec nom vide (Erreur de validation)
 POST {{baseUrl}}/api/sectors
