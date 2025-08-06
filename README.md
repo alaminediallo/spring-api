@@ -27,7 +27,7 @@ Cette API permet de gérer un système éducatif avec une relation hiérarchique
 | ------------------- | ------- | ----------------------- |
 | **Java**            | 17      | Langage principal       |
 | **Spring Boot**     | 3.5.4   | Framework web           |
-| **Maven** (wrapper) | 3.9.11  | Gestion des dépendances |
+| **Maven**           | 3.9.11  | Gestion des dépendances |
 | **MySQL**           | 8.0     | Base de données         |
 | **MapStruct**       | 1.6.3   | Mapping DTO/Entity      |
 | **Swagger**         | 2.8.9   | Documentation API       |
@@ -64,6 +64,7 @@ docker-compose up -d
 ### 2. Démarrer l'application
 
 ```bash
+mvn clean compile
 mvn spring-boot:run
 ```
 
