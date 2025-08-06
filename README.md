@@ -1,4 +1,4 @@
-# API de Gestion Éducative - Spring Boot
+# Projet API Spring Boot - Gestion des Classes et Secteurs
 
 Cette API permet de gérer un système éducatif avec une relation hiérarchique entre **Secteurs** et **Classes**. Chaque classe appartient à un secteur spécifique, avec des contraintes de validation et règles métier strictes.
 
@@ -35,7 +35,7 @@ Cette API permet de gérer un système éducatif avec une relation hiérarchique
 
 ## Endpoints API
 
-L'application expose une API REST permettant de gérer une entité (ex. : `Sectors`).
+L'application expose une API REST permettant de gérer une entité.
 
 > **[Accéder à Swagger](http://localhost:8080/swagger-ui/index.html)**
 
